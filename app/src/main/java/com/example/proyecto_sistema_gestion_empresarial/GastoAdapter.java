@@ -12,23 +12,12 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
+public class GastoAdapter extends ArrayAdapter<Gasto> {
 
-public class ProyectoAdapter extends ArrayAdapter<Proyecto> {
-
-    private List<Proyecto> proyecto;
-    public ProyectoAdapter(Context context, List<Proyecto> list) {
+    private List<Gasto> gasto;
+    public GastoAdapter(Context context, List<Gasto> list) {
         super(context, 0, list);
-        this.proyecto = list;
-    }
-
-    @Override
-    public long getItemId(int position) {
-
-        return proyecto.get(position).getId();
-
+        this.gasto = list;
     }
 
     @NonNull
@@ -49,14 +38,14 @@ public class ProyectoAdapter extends ArrayAdapter<Proyecto> {
 
     private View initView(int position, View convertView, ViewGroup parent) {
 
-        final View vistaPersonal = LayoutInflater.from(getContext()).inflate(R.layout.proyecto, parent, false);
+        final View vistaPersonal = LayoutInflater.from(getContext()).inflate(R.layout.gasto, parent, false);
 
-        TextView textViewName = vistaPersonal.findViewById(R.id.nombre);
-        Proyecto currentItem = proyecto.get(position);
+        TextView textViewName = vistaPersonal.findViewById(R.id.concepto);
+        Gasto currentItem = gasto.get(position);
 
         if (currentItem != null) {
 
-            textViewName.setText(currentItem.getNombre());
+            textViewName.setText(currentItem.getConcepto());
 
         }
 

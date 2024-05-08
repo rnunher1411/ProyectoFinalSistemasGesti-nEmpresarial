@@ -6,6 +6,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.proyecto_sistema_gestion_empresarial.Interfaces.UsarProyecto;
@@ -48,25 +50,35 @@ public class MainActivity extends AppCompatActivity {
                     ProyectoAdapter pAdapter = new ProyectoAdapter(MainActivity.this, respuesta);
                     mListView.setAdapter(pAdapter);
 
-                     boolean seleccionado = false;
-
-                    if (mListView.performClick()) {
-                        seleccionado = true;
-                    }
-
-                    if (seleccionado) {
-
-                        final Intent intent = new Intent(MainActivity.this, MainActivity2.class);
-                        startActivity(intent);
-
-                    }
-
             }
 
             @Override
             public void onFailure(Call<Respuesta> call, Throwable t) {
 
                 System.out.println("No funciona");
+
+            }
+        });
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                int idProyecto = (int) id;
+
+                boolean seleccionado = false;
+
+                if (mListView.performClick()) {
+                    seleccionado = true;
+                }
+
+                if (seleccionado) {
+
+                    final Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                    intent.putExtra("id", idProyecto);
+                    startActivity(intent);
+
+                }
 
             }
         });
