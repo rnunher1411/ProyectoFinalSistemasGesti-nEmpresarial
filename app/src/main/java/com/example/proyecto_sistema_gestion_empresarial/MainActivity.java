@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -46,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
 
                     ProyectoAdapter pAdapter = new ProyectoAdapter(MainActivity.this, respuesta);
                     mListView.setAdapter(pAdapter);
+
+                     boolean seleccionado = false;
+
+                    if (mListView.performClick()) {
+                        seleccionado = true;
+                    }
+
+                    if (seleccionado) {
+
+                        final Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                        startActivity(intent);
+
+                    }
 
             }
 
