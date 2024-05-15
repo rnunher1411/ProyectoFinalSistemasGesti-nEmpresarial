@@ -1,6 +1,9 @@
 package com.example.proyecto_sistema_gestion_empresarial;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -48,11 +51,26 @@ public class MainActivity2 extends AppCompatActivity {
 
                     ArrayList<Gasto> respuesta2  = response.body().data;
 
+                    GastoAdapter gAdapter = new GastoAdapter(MainActivity2.this, respuesta2);
+                    mListView.setAdapter(gAdapter);
 
                 }
 
                 @Override
                 public void onFailure(Call<Respuesta2> call, Throwable t) {
+
+                }
+            });
+
+            Button botonGasto = findViewById(R.id.boton);
+
+            botonGasto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    final Intent intent = new Intent(MainActivity2.this, MainActivityCrearGasto.class);
+                    intent.putExtra("id", idProyecto);
+                    startActivity(intent);
 
                 }
             });

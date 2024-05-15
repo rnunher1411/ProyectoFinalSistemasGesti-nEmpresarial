@@ -2,6 +2,7 @@ package com.example.proyecto_sistema_gestion_empresarial.Interfaces;
 
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta;
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta2;
+import com.example.proyecto_sistema_gestion_empresarial.Respuesta3;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -12,7 +13,10 @@ public interface UsarProyecto {
     @GET("/proyectos")
     Call<Respuesta> UsarProyecto();
 
-    @GET("/gastos/{idproyecto}")
+    @GET("/gastosList/{idproyecto}")
     Call<Respuesta2> UsarGasto(@Path("idproyecto") Integer idproyecto);
+
+    @GET("/usuarios")
+    Call<Respuesta3> UsarUsuario();
 
 }

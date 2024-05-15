@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
                 int idProyecto = (int) id;
 
-                boolean seleccionado = false;
+                boolean seleccionado = true;
 
-                if (mListView.performClick()) {
+                /*if (mListView.) {
                     seleccionado = true;
-                }
+                }*/
 
                 if (seleccionado) {
 

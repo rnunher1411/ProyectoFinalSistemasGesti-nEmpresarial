@@ -29,6 +29,12 @@
             android:dividerHeight="1dp"
             />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/boton"
+            android:text="Añadir gasto"/>
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
