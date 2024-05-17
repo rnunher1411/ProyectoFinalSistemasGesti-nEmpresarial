@@ -1,10 +1,15 @@
 package com.example.proyecto_sistema_gestion_empresarial;
 
+import static java.lang.Float.parseFloat;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -40,8 +45,12 @@ public class MainActivityCrearGasto extends AppCompatActivity {
             return insets;
         });
 
+        final int idProyecto = getIntent().getIntExtra("id", 0);
+
+
+
         TextView titulo = findViewById(R.id.titulo);
-        SpannableString content = new SpannableString("Proyecto 1");
+        SpannableString content = new SpannableString("Proyecto " + idProyecto);
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         titulo.setText(content);
 
@@ -57,7 +66,6 @@ public class MainActivityCrearGasto extends AppCompatActivity {
         ListView mListView = (ListView) findViewById(R.id.listaCliente);
         Spinner caja = findViewById(R.id.pagador);
 
-
         usarCliente.UsarUsuario().enqueue(new Callback<Respuesta3>() {
             @Override
             public void onResponse(Call<Respuesta3> call, Response<Respuesta3> response) {
@@ -65,7 +73,8 @@ public class MainActivityCrearGasto extends AppCompatActivity {
                 ArrayList<Usuario> respuesta3  = response.body().data;
 
                 UsuarioAdapter uAdapter = new UsuarioAdapter(MainActivityCrearGasto.this, respuesta3);
-                caja.setAdapter(uAdapter);
+                PagadorAdapter puAdapter = new PagadorAdapter(MainActivityCrearGasto.this, respuesta3);
+                caja.setAdapter(puAdapter);
                 mListView.setAdapter(uAdapter);
 
             }
@@ -76,14 +85,61 @@ public class MainActivityCrearGasto extends AppCompatActivity {
                 System.out.println("hola");
 
             }
+
         });
 
-        caja.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*caja.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            setPagador((String) caja.getItemAtPosition(position));
+
+        }
+        });*/
+
+        Button botonAceptar = findViewById(R.id.guardar);
+
+        botonAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onClick(View v) {
 
-                setPagador((String) caja.getItemAtPosition(position));
+                EditText importe = findViewById(R.id.importe);
+                String valorStringImporte = importe.getText().toString();
+                Float valorImporte = parseFloat(valorStringImporte);
 
+                EditText concepto = findViewById(R.id.descripcion);
+                String textoConcepto = concepto.getText().toString();
+
+                TextView prueba = findViewById(R.id.prueba);
+
+                caja.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        setPagador((String) caja.getItemAtPosition(position));
+                        String pagador = (String) caja.getItemAtPosition(position);
+                        /*SpannableString content3 = new SpannableString(pagador);
+                        prueba.setText(content3);*/
+
+                    }
+                });
+
+                /*final Intent intent = new Intent(MainActivityCrearGasto.this, MainActivity2.class);
+                intent.putExtra("id", idProyecto);
+                startActivity(intent);*/
+
+            }
+        });
+
+        Button botonCancelar = findViewById(R.id.cancelar);
+
+        botonCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Intent intent = new Intent(MainActivityCrearGasto.this, MainActivity2.class);
+                intent.putExtra("id", idProyecto);
+                startActivity(intent);
             }
         });
 
