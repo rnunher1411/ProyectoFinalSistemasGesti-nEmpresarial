@@ -9,6 +9,7 @@ import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -23,6 +24,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.proyecto_sistema_gestion_empresarial.Interfaces.UsarProyecto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +35,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivityCrearGasto extends AppCompatActivity {
 
     String pagador = "";
+    int idPagadorNuevoGasto = 0;
+
+    List<String> usuarios;
+
+    List<String> usuariosSeleccionados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,7 @@ public class MainActivityCrearGasto extends AppCompatActivity {
         });
 
         final int idProyecto = getIntent().getIntExtra("id", 0);
-
+        int idPagador;
 
 
         TextView titulo = findViewById(R.id.titulo);
@@ -72,6 +79,8 @@ public class MainActivityCrearGasto extends AppCompatActivity {
 
                 ArrayList<Usuario> respuesta3  = response.body().data;
 
+                //idPagador =
+
                 UsuarioAdapter uAdapter = new UsuarioAdapter(MainActivityCrearGasto.this, respuesta3);
                 PagadorAdapter puAdapter = new PagadorAdapter(MainActivityCrearGasto.this, respuesta3);
                 caja.setAdapter(puAdapter);
@@ -88,6 +97,10 @@ public class MainActivityCrearGasto extends AppCompatActivity {
 
         });
 
+        final UsarProyecto crearGasto = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build().create(UsarProyecto.class);
+
         /*caja.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,6 +108,35 @@ public class MainActivityCrearGasto extends AppCompatActivity {
             setPagador((String) caja.getItemAtPosition(position));
 
         }
+        });*/
+
+        caja.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                PagadorAdapter puAdapter = (PagadorAdapter) caja.getAdapter();
+                Usuario usuario = (Usuario) parent.getItemAtPosition(position);
+                idPagadorNuevoGasto = usuario.getId();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        //CheckBox seleccionarNombre = findViewById(R.id.caja);
+
+        usuariosSeleccionados = new ArrayList<>();
+
+        /*mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                usuariosSeleccionados.add((String) parent.getItemAtPosition(position));
+
+            }
         });*/
 
         Button botonAceptar = findViewById(R.id.guardar);
@@ -110,18 +152,24 @@ public class MainActivityCrearGasto extends AppCompatActivity {
                 EditText concepto = findViewById(R.id.descripcion);
                 String textoConcepto = concepto.getText().toString();
 
-                TextView prueba = findViewById(R.id.prueba);
 
-                caja.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                int idProyectoGastoNuevo = idProyecto;
+
+                GastoUsuarios nuevoGasto = new GastoUsuarios(textoConcepto, valorImporte, idProyectoGastoNuevo, idPagadorNuevoGasto, usuarios);
+
+                crearGasto.CrearGasto(idProyecto, nuevoGasto).enqueue(new Callback<RespuestaCrearGasto>() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public void onResponse(Call<RespuestaCrearGasto> call, Response<RespuestaCrearGasto> response) {
 
-                        setPagador((String) caja.getItemAtPosition(position));
-                        String pagador = (String) caja.getItemAtPosition(position);
-                        /*SpannableString content3 = new SpannableString(pagador);
-                        prueba.setText(content3);*/
+                        ArrayList<GastoUsuarios> respuestaCrearGasto = response.body().data;
 
                     }
+
+                    @Override
+                    public void onFailure(Call<RespuestaCrearGasto> call, Throwable t) {
+
+                    }
+
                 });
 
                 /*final Intent intent = new Intent(MainActivityCrearGasto.this, MainActivity2.class);
@@ -147,5 +195,11 @@ public class MainActivityCrearGasto extends AppCompatActivity {
 
     public void setPagador(String pagador) {
         this.pagador = pagador;
+    }
+
+    public void seleccionarUsuario(Usuario usuario) {
+
+        usuariosSeleccionados.add(usuario.getNombre());
+
     }
 }

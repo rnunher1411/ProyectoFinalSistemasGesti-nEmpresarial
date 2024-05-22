@@ -1,34 +1,21 @@
 package com.example.proyecto_sistema_gestion_empresarial;
 
-public class Gasto {
+import java.util.List;
 
-    int id;
+public class GastoUsuarios {
+
     String concepto;
-    float importe;
+    Float importe;
     int id_proyecto;
     int id_pagador;
+    List<String> usuarios;
 
-    public Gasto(int id, String concepto, float importe, int id_proyecto, int id_pagador) {
-        this.id = id;
+    public GastoUsuarios(String concepto, Float importe, int id_proyecto, int id_pagador, List<String> usuarios) {
         this.concepto = concepto;
         this.importe = importe;
         this.id_proyecto = id_proyecto;
         this.id_pagador = id_pagador;
-    }
-
-    public Gasto(String concepto, float importe, int id_proyecto, int id_pagador) {
-        this.concepto = concepto;
-        this.importe = importe;
-        this.id_proyecto = id_proyecto;
-        this.id_pagador = id_pagador;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.usuarios = usuarios;
     }
 
     public String getConcepto() {
@@ -39,11 +26,11 @@ public class Gasto {
         this.concepto = concepto;
     }
 
-    public float getImporte() {
+    public Float getImporte() {
         return importe;
     }
 
-    public void setImporte(float importe) {
+    public void setImporte(Float importe) {
         this.importe = importe;
     }
 
@@ -62,4 +49,13 @@ public class Gasto {
     public void setId_pagador(int id_pagador) {
         this.id_pagador = id_pagador;
     }
+
+    public List<String> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<String> usuarios) {
+        this.usuarios = usuarios;
+    }
+
 }
