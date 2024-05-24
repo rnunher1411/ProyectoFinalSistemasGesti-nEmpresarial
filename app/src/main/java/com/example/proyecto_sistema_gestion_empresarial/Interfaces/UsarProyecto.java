@@ -27,5 +27,7 @@ public interface UsarProyecto {
     @POST("/gastosList/{idproyecto}")
     Call<RespuestaCrearGasto> CrearGasto(@Path("idproyecto") Integer idproyecto, @Body GastoUsuarios nuevoGasto);
 
+    @GET("/gastos/{idgasto}")
+    Call<Respuesta2> LeerGasto(@Path("idgasto") Integer idgasto);
 
 }

@@ -37,9 +37,7 @@ public class MainActivityCrearGasto extends AppCompatActivity {
     String pagador = "";
     int idPagadorNuevoGasto = 0;
 
-    List<String> usuarios;
-
-    List<String> usuariosSeleccionados;
+    List<Integer> usuariosSeleccionados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +76,6 @@ public class MainActivityCrearGasto extends AppCompatActivity {
             public void onResponse(Call<Respuesta3> call, Response<Respuesta3> response) {
 
                 ArrayList<Usuario> respuesta3  = response.body().data;
-
-                //idPagador =
 
                 UsuarioAdapter uAdapter = new UsuarioAdapter(MainActivityCrearGasto.this, respuesta3);
                 PagadorAdapter puAdapter = new PagadorAdapter(MainActivityCrearGasto.this, respuesta3);
@@ -130,14 +126,15 @@ public class MainActivityCrearGasto extends AppCompatActivity {
 
         usuariosSeleccionados = new ArrayList<>();
 
-        /*mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                usuariosSeleccionados.add((String) parent.getItemAtPosition(position));
+                Usuario usuario = (Usuario) parent.getItemAtPosition(position);
+                usuariosSeleccionados.add(usuario.getId()/*(Integer) parent.getItemAtPosition(position)*/);
 
             }
-        });*/
+        });
 
         Button botonAceptar = findViewById(R.id.guardar);
 
@@ -155,7 +152,7 @@ public class MainActivityCrearGasto extends AppCompatActivity {
 
                 int idProyectoGastoNuevo = idProyecto;
 
-                GastoUsuarios nuevoGasto = new GastoUsuarios(textoConcepto, valorImporte, idProyectoGastoNuevo, idPagadorNuevoGasto, usuarios);
+                GastoUsuarios nuevoGasto = new GastoUsuarios(textoConcepto, valorImporte, idProyectoGastoNuevo, idPagadorNuevoGasto, usuariosSeleccionados);
 
                 crearGasto.CrearGasto(idProyecto, nuevoGasto).enqueue(new Callback<RespuestaCrearGasto>() {
                     @Override
@@ -172,9 +169,9 @@ public class MainActivityCrearGasto extends AppCompatActivity {
 
                 });
 
-                /*final Intent intent = new Intent(MainActivityCrearGasto.this, MainActivity2.class);
+                final Intent intent = new Intent(MainActivityCrearGasto.this, MainActivity2.class);
                 intent.putExtra("id", idProyecto);
-                startActivity(intent);*/
+                startActivity(intent);
 
             }
         });
@@ -199,7 +196,7 @@ public class MainActivityCrearGasto extends AppCompatActivity {
 
     public void seleccionarUsuario(Usuario usuario) {
 
-        usuariosSeleccionados.add(usuario.getNombre());
+        usuariosSeleccionados.add(usuario.getId());
 
     }
 }

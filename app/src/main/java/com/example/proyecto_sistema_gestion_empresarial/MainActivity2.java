@@ -3,6 +3,7 @@ package com.example.proyecto_sistema_gestion_empresarial;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -68,8 +69,23 @@ public class MainActivity2 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
+
                     final Intent intent = new Intent(MainActivity2.this, MainActivityCrearGasto.class);
                     intent.putExtra("id", idProyecto);
+                    startActivity(intent);
+
+                }
+            });
+
+            mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    Gasto gasto = (Gasto) parent.getItemAtPosition(position);
+                    int idGasto = gasto.getId();
+                    final Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
+                    intent.putExtra("idProyecto", idProyecto);
+                    intent.putExtra("idGasto", idGasto);
                     startActivity(intent);
 
                 }

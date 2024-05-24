@@ -8,9 +8,9 @@ public class GastoUsuarios {
     Float importe;
     int id_proyecto;
     int id_pagador;
-    List<String> usuarios;
+    List<Integer> usuarios;
 
-    public GastoUsuarios(String concepto, Float importe, int id_proyecto, int id_pagador, List<String> usuarios) {
+    public GastoUsuarios(String concepto, Float importe, int id_proyecto, int id_pagador, List<Integer> usuarios) {
         this.concepto = concepto;
         this.importe = importe;
         this.id_proyecto = id_proyecto;
@@ -50,11 +50,11 @@ public class GastoUsuarios {
         this.id_pagador = id_pagador;
     }
 
-    public List<String> getUsuarios() {
+    public List<Integer> getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(List<String> usuarios) {
+    public void setUsuarios(List<Integer> usuarios) {
         this.usuarios = usuarios;
     }
 
