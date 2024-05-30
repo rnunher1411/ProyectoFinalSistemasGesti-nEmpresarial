@@ -40,6 +40,20 @@ public class MainActivity2 extends AppCompatActivity {
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();
 
+            Button botonVolver = findViewById(R.id.volver);
+
+            botonVolver.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+            });
+
+
             final UsarProyecto usarGasto = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build().create(UsarProyecto.class);

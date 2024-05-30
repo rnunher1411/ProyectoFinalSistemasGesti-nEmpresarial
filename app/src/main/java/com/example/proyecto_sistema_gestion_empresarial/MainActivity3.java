@@ -17,6 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.proyecto_sistema_gestion_empresarial.Interfaces.UsarProyecto;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -79,31 +80,31 @@ public class MainActivity3 extends AppCompatActivity {
         TextView idPagador = findViewById(R.id.id_pagador);
         idPagador.setText(String.valueOf(gasto.getId_pagador()));
 
-        /*final UsarProyecto leerCliente = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
+        final UsarProyecto leerParticipaGasto = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
                 .addConverterFactory(GsonConverterFactory.create())
-                .build().create(UsarProyecto.class);*/
+                .build().create(UsarProyecto.class);
 
 
-        /*ListView mListView = (ListView) findViewById(R.id.listaGasto);
-        leerCliente.LeerGasto(idGasto).enqueue(new Callback<Respuesta2>() {
+        ListView mListView = (ListView) findViewById(R.id.listaUsariosId);
+
+        leerParticipaGasto.LeerParticipaGasto(idGasto).enqueue(new Callback<Respuesta4>() {
             @Override
-            public void onResponse(Call<Respuesta2> call, Response<Respuesta2> response) {
+            public void onResponse(Call<Respuesta4> call, Response<Respuesta4> response) {
 
+                ArrayList<ParticipaGasto> respuesta4  = response.body().data;
 
-                ArrayList<Gasto> respuesta2  = response.body().data;
-
-                LeerGastoAdapter lgAdapter = new LeerGastoAdapter(MainActivity3.this, respuesta2);
-                mListView.setAdapter(lgAdapter);
+                UsuarioIdAdapter uiAdapter = new UsuarioIdAdapter(MainActivity3.this, respuesta4);
+                mListView.setAdapter(uiAdapter);
 
             }
 
             @Override
-            public void onFailure(Call<Respuesta2> call, Throwable t) {
+            public void onFailure(Call<Respuesta4> call, Throwable t) {
 
-                System.out.println("hola");
+                System.out.println("Hola");
 
             }
-        });*/
+        });
 
     }
 }

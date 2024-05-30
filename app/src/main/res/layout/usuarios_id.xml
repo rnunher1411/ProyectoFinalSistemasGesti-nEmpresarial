@@ -5,19 +5,16 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/concepto"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:text=""
-            android:gravity="center" />
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/idUsuario"/>
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

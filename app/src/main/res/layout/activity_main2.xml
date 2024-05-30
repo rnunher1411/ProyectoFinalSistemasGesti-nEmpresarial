@@ -14,13 +14,39 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GASTOS"
-            android:textColor="@color/white"
-            android:background="@color/black"
-            android:gravity="center"/>
+            android:theme="@style/Theme.Proyecto_Sistema_Gestion_Empresarial.AppBarOverlay"
+            tools:ignore="MissingConstraints">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/black"
+                app:popupTheme="@style/Theme.Proyecto_Sistema_Gestion_Empresarial.PopupOverlay" >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/volver"
+                    android:backgroundTint="@color/green"
+                    android:text="Volver"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text="Gastos"
+                    android:textColor="@color/white"
+                    android:id="@+id/titulo"/>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <ListView
             android:layout_width="fill_parent"

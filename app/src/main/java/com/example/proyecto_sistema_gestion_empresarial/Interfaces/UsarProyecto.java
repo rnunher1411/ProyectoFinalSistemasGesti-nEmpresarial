@@ -1,10 +1,10 @@
 package com.example.proyecto_sistema_gestion_empresarial.Interfaces;
 
-import com.example.proyecto_sistema_gestion_empresarial.Gasto;
 import com.example.proyecto_sistema_gestion_empresarial.GastoUsuarios;
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta;
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta2;
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta3;
+import com.example.proyecto_sistema_gestion_empresarial.Respuesta4;
 import com.example.proyecto_sistema_gestion_empresarial.RespuestaCrearGasto;
 
 import retrofit2.Call;
@@ -29,5 +29,8 @@ public interface UsarProyecto {
 
     @GET("/gastos/{idgasto}")
     Call<Respuesta2> LeerGasto(@Path("idgasto") Integer idgasto);
+
+    @GET("/participaGasto/{idgasto}")
+    Call<Respuesta4> LeerParticipaGasto(@Path("idgasto") Integer idgasto);
 
 }
