@@ -82,10 +82,21 @@ public class MainActivity2 extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     Gasto gasto = (Gasto) parent.getItemAtPosition(position);
+
                     int idGasto = gasto.getId();
+                    String conceptoGasto = gasto.getConcepto();
+                    Float importeGasto = gasto.getImporte();
+                    int id_proyectoGasto = gasto.getId_proyecto();
+                    int id_pagadorGasto = gasto.getId_pagador();
+
                     final Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
-                    intent.putExtra("idProyecto", idProyecto);
+
                     intent.putExtra("idGasto", idGasto);
+                    intent.putExtra("conceptoGasto", conceptoGasto);
+                    intent.putExtra("importeGasto", importeGasto);
+                    intent.putExtra("idProyectoGasto", id_proyectoGasto);
+                    intent.putExtra("idPagadorGasto", id_pagadorGasto);
+
                     startActivity(intent);
 
                 }

@@ -9,23 +9,145 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
-        <TextView
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GASTOS"
-            android:textColor="@color/white"
-            android:background="@color/black"
-            android:gravity="center"/>
+            android:theme="@style/Theme.Proyecto_Sistema_Gestion_Empresarial.AppBarOverlay"
+            tools:ignore="MissingConstraints">
 
-        <ListView
-            android:layout_width="fill_parent"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/Theme.Proyecto_Sistema_Gestion_Empresarial.PopupOverlay" >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:id="@+id/volver"
+                    android:backgroundTint="@color/green"
+                    android:text="Volver"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:text=""
+                    android:id="@+id/titulo"/>
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/listaGasto"
-            android:dividerHeight="1dp"
-            />
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoIdGasto"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="ID gasto: " />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/id"
+                    android:hint="id_gasto"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoConcepto"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Concepto: " />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/concepto"
+                    android:hint="concepto"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoImporte"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Importe: " />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/importe"
+                    android:hint="importe"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoIdProyecto"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Id proyecto: " />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/id_proyecto"
+                    android:hint="id_proyecto"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textoIdPagador"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Id pagador: " />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/id_pagador"
+                    android:hint="id_pagador"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

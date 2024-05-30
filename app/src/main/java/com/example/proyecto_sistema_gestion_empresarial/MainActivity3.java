@@ -1,7 +1,13 @@
 package com.example.proyecto_sistema_gestion_empresarial;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,14 +38,53 @@ public class MainActivity3 extends AppCompatActivity {
             return insets;
         });
 
-        final int idProyecto = getIntent().getIntExtra("idProyecto", 0);
         final int idGasto = getIntent().getIntExtra("idGasto", 0);
+        final String conceptoGasto = getIntent().getStringExtra("conceptoGasto");
+        final float importeGasto = getIntent().getFloatExtra("importeGasto", 0);
+        final int idProyectoGasto = getIntent().getIntExtra("idProyectoGasto", 0);
+        final int idPagadorGasto = getIntent().getIntExtra("idPagadorGasto", 0);
 
-        final UsarProyecto leerCliente = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
+        TextView titulo = findViewById(R.id.titulo);
+        SpannableString content = new SpannableString("Gasto " + idGasto);
+        titulo.setText(content);
+
+        Button botonVolver = findViewById(R.id.volver);
+
+        botonVolver.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity3.this, MainActivity2.class);
+                intent.putExtra("id", idProyectoGasto);
+                startActivity(intent);
+
+            }
+        });
+
+        Gasto gasto = new Gasto(idGasto, conceptoGasto, importeGasto, idProyectoGasto, idPagadorGasto);
+
+        TextView id = findViewById(R.id.id);
+        id.setText(String.valueOf(gasto.getId()));
+
+        TextView concepto = findViewById(R.id.concepto);
+        concepto.setText(gasto.getConcepto());
+
+        TextView importe = findViewById(R.id.importe);
+        importe.setText(String.valueOf(gasto.getImporte()));
+
+        TextView idProyecto = findViewById(R.id.id_proyecto);
+        idProyecto.setText(String.valueOf(gasto.getId_proyecto()));
+
+        TextView idPagador = findViewById(R.id.id_pagador);
+        idPagador.setText(String.valueOf(gasto.getId_pagador()));
+
+        /*final UsarProyecto leerCliente = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
                 .addConverterFactory(GsonConverterFactory.create())
-                .build().create(UsarProyecto.class);
+                .build().create(UsarProyecto.class);*/
 
-        ListView mListView = (ListView) findViewById(R.id.listaGasto);
+
+        /*ListView mListView = (ListView) findViewById(R.id.listaGasto);
         leerCliente.LeerGasto(idGasto).enqueue(new Callback<Respuesta2>() {
             @Override
             public void onResponse(Call<Respuesta2> call, Response<Respuesta2> response) {
@@ -58,7 +103,7 @@ public class MainActivity3 extends AppCompatActivity {
                 System.out.println("hola");
 
             }
-        });
+        });*/
 
     }
 }

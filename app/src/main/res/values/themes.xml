@@ -6,4 +6,6 @@
     </style>
 
     <style name="Theme.Proyecto_Sistema_Gestion_Empresarial" parent="Base.Theme.Proyecto_Sistema_Gestion_Empresarial" />
+    <style name="Theme.Proyecto_Sistema_Gestion_Empresarial.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Proyecto_Sistema_Gestion_Empresarial.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
