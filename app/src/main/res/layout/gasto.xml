@@ -12,10 +12,31 @@
 
         <TextView
             android:id="@+id/concepto"
-            android:layout_width="match_parent"
+            android:layout_width="206dp"
+            android:layout_height="33dp"
+            android:gravity="right"
+            android:text="a" />
+
+        <TextView
+            android:id="@+id/parentesis_inicio"
+            android:layout_width="wrap_content"
+            android:layout_height="33dp"
+            android:text=" ( "
+            android:gravity="left" />
+
+        <TextView
+            android:id="@+id/importe"
+            android:layout_width="wrap_content"
             android:layout_height="33dp"
             android:text=""
-            android:gravity="center" />
+            android:gravity="left" />
+
+        <TextView
+            android:id="@+id/parentesis_fin"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:text=" €) "
+            android:gravity="left" />
 
     </LinearLayout>
 

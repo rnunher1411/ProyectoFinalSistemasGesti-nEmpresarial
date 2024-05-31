@@ -15,6 +15,10 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String nombre) {
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }

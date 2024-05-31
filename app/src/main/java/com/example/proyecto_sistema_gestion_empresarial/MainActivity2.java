@@ -27,6 +27,8 @@ public class MainActivity2 extends AppCompatActivity {
         public DrawerLayout drawerLayout;
         public ActionBarDrawerToggle actionBarDrawerToggle;
 
+        int gastosTotales;
+
         @Override
         protected void onCreate(Bundle savedInstanceState){
             super.onCreate(savedInstanceState);
@@ -59,6 +61,7 @@ public class MainActivity2 extends AppCompatActivity {
                     .build().create(UsarProyecto.class);
 
             ListView mListView = (ListView) findViewById(R.id.listaGasto);
+            TextView conteoGasto = findViewById(R.id.conteoGastos);
 
             usarGasto.UsarGasto(idProyecto).enqueue(new Callback<Respuesta2>() {
                 @Override
@@ -69,6 +72,12 @@ public class MainActivity2 extends AppCompatActivity {
                     GastoAdapter gAdapter = new GastoAdapter(MainActivity2.this, respuesta2);
                     mListView.setAdapter(gAdapter);
 
+                    for (int x = 0; x < gAdapter.getSize(); x++) {
+
+                        gastosTotales += gAdapter.getItemImporte(x);
+                        conteoGasto.setText("Gastos totales: " + gastosTotales);
+
+                    }
                 }
 
                 @Override
@@ -76,6 +85,8 @@ public class MainActivity2 extends AppCompatActivity {
 
                 }
             });
+
+
 
             Button botonGasto = findViewById(R.id.boton);
 
@@ -96,6 +107,7 @@ public class MainActivity2 extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                     Gasto gasto = (Gasto) parent.getItemAtPosition(position);
+
 
                     int idGasto = gasto.getId();
                     String conceptoGasto = gasto.getConcepto();

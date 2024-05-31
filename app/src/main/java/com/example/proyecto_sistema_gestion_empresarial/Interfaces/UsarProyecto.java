@@ -18,11 +18,17 @@ public interface UsarProyecto {
     @GET("/proyectos")
     Call<Respuesta> UsarProyecto();
 
+    @GET("/proyectos/{idproyecto}")
+    Call<Respuesta> UsarProyectoId(@Path("idproyecto") Integer idproyecto);
+
     @GET("/gastosList/{idproyecto}")
     Call<Respuesta2> UsarGasto(@Path("idproyecto") Integer idproyecto);
 
     @GET("/usuarios")
     Call<Respuesta3> UsarUsuario();
+
+    @GET("/usuarios/{idusuarios}")
+    Call<Respuesta3> UsarUsuarioId(@Path("idusuarios") Integer idusuarios);
 
     @POST("/gastosList/{idproyecto}")
     Call<RespuestaCrearGasto> CrearGasto(@Path("idproyecto") Integer idproyecto, @Body GastoUsuarios nuevoGasto);

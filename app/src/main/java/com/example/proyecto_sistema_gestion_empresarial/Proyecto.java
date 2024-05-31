@@ -13,6 +13,10 @@ public class Proyecto {
         this.id_admin = id_admin;
     }
 
+    public Proyecto(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getNombre() {
         return nombre;
     }

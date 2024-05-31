@@ -20,6 +20,19 @@ public class GastoAdapter extends ArrayAdapter<Gasto> {
         this.gasto = list;
     }
 
+
+    public float getItemImporte(int position) {
+
+        return gasto.get(position).getImporte();
+
+    }
+
+    public int getSize() {
+
+        return gasto.size();
+
+    }
+
     @NonNull
     @Override
 
@@ -41,11 +54,13 @@ public class GastoAdapter extends ArrayAdapter<Gasto> {
         final View vistaPersonal = LayoutInflater.from(getContext()).inflate(R.layout.gasto, parent, false);
 
         TextView textViewName = vistaPersonal.findViewById(R.id.concepto);
+        TextView textViewImporte = vistaPersonal.findViewById(R.id.importe);
         Gasto currentItem = gasto.get(position);
 
         if (currentItem != null) {
 
             textViewName.setText(currentItem.getConcepto());
+            textViewImporte.setText(String.valueOf(currentItem.getImporte()));
 
         }
 

@@ -61,6 +61,12 @@
             android:id="@+id/boton"
             android:text="Añadir gasto"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/conteoGastos"
+            android:text=""/>
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
