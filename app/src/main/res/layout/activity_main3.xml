@@ -61,7 +61,7 @@
 
                 <TextView
                     android:id="@+id/textoIdGasto"
-                    android:layout_width="80dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:text="ID gasto: " />
 
@@ -81,7 +81,7 @@
 
                 <TextView
                     android:id="@+id/textoConcepto"
-                    android:layout_width="80dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:text="Concepto: " />
 
@@ -101,10 +101,9 @@
 
                 <TextView
                     android:id="@+id/textoImporte"
-                    android:layout_width="80dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:text="Importe: "
-                    />
+                    android:text="Importe: " />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -121,16 +120,16 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textoIdProyecto"
-                    android:layout_width="80dp"
+                    android:id="@+id/textoNombreProyecto"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:text="Id proyecto: " />
+                    android:text="Nombre proyecto: " />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/id_proyecto"
-                    android:hint="id_proyecto"/>
+                    android:id="@+id/nombre_proyecto"
+                    android:hint="nombre_proyecto"/>
 
             </LinearLayout>
 
@@ -141,16 +140,16 @@
                 android:layout_marginBottom="10dp">
 
                 <TextView
-                    android:id="@+id/textoIdPagador"
-                    android:layout_width="80dp"
+                    android:id="@+id/textoNombrePagador"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:text="Id pagador: " />
+                    android:text="Nombre pagador: " />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/id_pagador"
-                    android:hint="id_pagador"/>
+                    android:id="@+id/nombre_pagador"
+                    android:hint="nombre_pagador"/>
 
             </LinearLayout>
 
@@ -162,7 +161,7 @@
 
                 <TextView
                     android:id="@+id/textoListaUsuarios"
-                    android:layout_width="80dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="Usuarios: " />

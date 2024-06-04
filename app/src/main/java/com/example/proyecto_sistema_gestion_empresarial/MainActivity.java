@@ -68,10 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
                 boolean seleccionado = true;
 
-                /*if (mListView.) {
-                    seleccionado = true;
-                }*/
-
                 if (seleccionado) {
 
                     final Intent intent = new Intent(MainActivity.this, MainActivity2.class);

@@ -3,7 +3,6 @@ package com.example.proyecto_sistema_gestion_empresarial;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -17,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.proyecto_sistema_gestion_empresarial.Interfaces.UsarProyecto;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -74,20 +72,57 @@ public class MainActivity3 extends AppCompatActivity {
         TextView importe = findViewById(R.id.importe);
         importe.setText(String.valueOf(gasto.getImporte()));
 
-        TextView idProyecto = findViewById(R.id.id_proyecto);
-        idProyecto.setText(String.valueOf(gasto.getId_proyecto()));
 
-        TextView idPagador = findViewById(R.id.id_pagador);
-        idPagador.setText(String.valueOf(gasto.getId_pagador()));
 
-        final UsarProyecto leerParticipaGasto = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
+        final UsarProyecto leer = new Retrofit.Builder().baseUrl("http://rnunher1411.eu.pythonanywhere.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(UsarProyecto.class);
 
+        TextView nombreProyecto = findViewById(R.id.nombre_proyecto);
+
+        leer.UsarProyectoId(idProyectoGasto).enqueue(new Callback<RespuestaUsarProyectoId>() {
+            @Override
+            public void onResponse(Call<RespuestaUsarProyectoId> call, Response<RespuestaUsarProyectoId> response) {
+
+                ArrayList<Proyecto> respuesta5  = response.body().data;
+                ProyectoAdapter pAdapter = new ProyectoAdapter(MainActivity3.this, respuesta5);
+                nombreProyecto.setText(String.valueOf(pAdapter));
+
+            }
+
+            @Override
+            public void onFailure(Call<RespuestaUsarProyectoId> call, Throwable t) {
+
+                System.out.println("hola");
+
+            }
+        });
+
+
+
+        TextView nombrePagador = findViewById(R.id.nombre_pagador);
+
+        leer.UsarUsuarioId(idPagadorGasto).enqueue(new Callback<RespuestaUsarPagadorId>() {
+            @Override
+            public void onResponse(Call<RespuestaUsarPagadorId> call, Response<RespuestaUsarPagadorId> response) {
+
+                ArrayList<Usuario> respuesta6 = response.body().data;
+                PagadorAdapter paAdapter = new PagadorAdapter(MainActivity3.this, respuesta6);
+                nombrePagador.setText(String.valueOf(paAdapter));
+
+            }
+
+            @Override
+            public void onFailure(Call<RespuestaUsarPagadorId> call, Throwable t) {
+
+                System.out.println("hola");
+
+            }
+        });
 
         ListView mListView = (ListView) findViewById(R.id.listaUsariosId);
 
-        leerParticipaGasto.LeerParticipaGasto(idGasto).enqueue(new Callback<Respuesta4>() {
+        leer.LeerParticipaGasto(idGasto).enqueue(new Callback<Respuesta4>() {
             @Override
             public void onResponse(Call<Respuesta4> call, Response<Respuesta4> response) {
 
