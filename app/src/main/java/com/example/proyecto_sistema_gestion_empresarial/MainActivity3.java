@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity3 extends AppCompatActivity {
+
+    int id_Usuarios = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +87,8 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onResponse(Call<RespuestaUsarProyectoId> call, Response<RespuestaUsarProyectoId> response) {
 
-                ArrayList<Proyecto> respuesta5  = response.body().data;
-                ProyectoAdapter pAdapter = new ProyectoAdapter(MainActivity3.this, respuesta5);
-                nombreProyecto.setText(String.valueOf(pAdapter));
+                Proyecto respuesta5  = response.body().data;
+                nombreProyecto.setText(String.valueOf(respuesta5.getNombre()));
 
             }
 
@@ -106,9 +108,8 @@ public class MainActivity3 extends AppCompatActivity {
             @Override
             public void onResponse(Call<RespuestaUsarPagadorId> call, Response<RespuestaUsarPagadorId> response) {
 
-                ArrayList<Usuario> respuesta6 = response.body().data;
-                PagadorAdapter paAdapter = new PagadorAdapter(MainActivity3.this, respuesta6);
-                nombrePagador.setText(String.valueOf(paAdapter));
+                Usuario respuesta6 = response.body().data;
+                nombrePagador.setText(String.valueOf(respuesta6.getNombre()));
 
             }
 
@@ -128,7 +129,8 @@ public class MainActivity3 extends AppCompatActivity {
 
                 ArrayList<ParticipaGasto> respuesta4  = response.body().data;
 
-                UsuarioIdAdapter uiAdapter = new UsuarioIdAdapter(MainActivity3.this, respuesta4);
+                PartcipaGastoUsuarioNombreAdapter uiAdapter = new PartcipaGastoUsuarioNombreAdapter(MainActivity3.this, respuesta4);
+
                 mListView.setAdapter(uiAdapter);
 
             }
@@ -140,6 +142,35 @@ public class MainActivity3 extends AppCompatActivity {
 
             }
         });
+
+        Button eliminarGasto = findViewById(R.id.deleteGasto);
+
+        eliminarGasto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                leer.BorrarGasto(idGasto).enqueue(new Callback<Respuesta2>() {
+                    @Override
+                    public void onResponse(Call<Respuesta2> call, Response<Respuesta2> response) {
+
+                        Toast.makeText(MainActivity3.this, "Gasto borrado",
+                                Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Respuesta2> call, Throwable t) {
+
+                    }
+                });
+
+                final Intent intent = new Intent(MainActivity3.this, MainActivity2.class);
+                intent.putExtra("id", idProyectoGasto);
+                startActivity(intent);
+
+            }
+        });
+
 
     }
 }

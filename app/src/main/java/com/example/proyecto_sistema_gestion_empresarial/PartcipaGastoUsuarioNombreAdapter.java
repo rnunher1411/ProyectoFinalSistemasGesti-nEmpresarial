@@ -12,22 +12,25 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.http.Body;
-import retrofit2.http.POST;
+public class PartcipaGastoUsuarioNombreAdapter extends ArrayAdapter<ParticipaGasto> {
 
-public class ProyectoAdapter extends ArrayAdapter<Proyecto> {
+    private List<ParticipaGasto> participaGasto;
 
-    private List<Proyecto> proyecto;
-    public ProyectoAdapter(Context context, List<Proyecto> list) {
+    public PartcipaGastoUsuarioNombreAdapter(Context context, List<ParticipaGasto> list) {
         super(context, 0, list);
-        this.proyecto = list;
+        this.participaGasto = list;
     }
 
-    @Override
-    public long getItemId(int position) {
 
-        return proyecto.get(position).getId();
+    public int getUsuarioId(int position) {
+
+        return participaGasto.get(position).getId_usuario();
+
+    }
+
+    public int getSize() {
+
+        return participaGasto.size();
 
     }
 
@@ -49,14 +52,14 @@ public class ProyectoAdapter extends ArrayAdapter<Proyecto> {
 
     private View initView(int position, View convertView, ViewGroup parent) {
 
-        final View vistaPersonal = LayoutInflater.from(getContext()).inflate(R.layout.proyecto, parent, false);
+        final View vistaPersonal = LayoutInflater.from(getContext()).inflate(R.layout.usuarios_id, parent, false);
 
-        TextView textViewName = vistaPersonal.findViewById(R.id.nombre);
-        Proyecto currentItem = proyecto.get(position);
+        TextView textViewNombreUsuario = vistaPersonal.findViewById(R.id.nombreUsuario);
+        ParticipaGasto currentItem = participaGasto.get(position);
 
         if (currentItem != null) {
 
-            textViewName.setText(currentItem.getNombre());
+            textViewNombreUsuario.setText(String.valueOf(currentItem.getNombre_usuario()));
 
         }
 

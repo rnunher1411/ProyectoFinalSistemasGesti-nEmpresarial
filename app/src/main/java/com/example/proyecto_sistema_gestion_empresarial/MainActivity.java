@@ -13,7 +13,6 @@ import android.widget.ListView;
 import com.example.proyecto_sistema_gestion_empresarial.Interfaces.UsarProyecto;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayList<Proyecto> respuesta  = response.body().data;
 
-                    ProyectoAdapter pAdapter = new ProyectoAdapter(MainActivity.this, respuesta);
+                    ProyectosAdapter pAdapter = new ProyectosAdapter(MainActivity.this, respuesta);
                     mListView.setAdapter(pAdapter);
 
             }

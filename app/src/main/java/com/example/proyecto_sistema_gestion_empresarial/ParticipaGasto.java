@@ -5,11 +5,13 @@ public class ParticipaGasto {
     int id_gasto;
     int id_usuario;
     float importe;
+    String nombre_usuario;
 
-    public ParticipaGasto(int id_gasto, int id_usuario, float importe) {
+    public ParticipaGasto(int id_gasto, int id_usuario, float importe, String nombre_usuario) {
         this.id_gasto = id_gasto;
         this.id_usuario = id_usuario;
         this.importe = importe;
+        this.nombre_usuario = nombre_usuario;
     }
 
     public ParticipaGasto() {
@@ -39,4 +41,11 @@ public class ParticipaGasto {
         this.importe = importe;
     }
 
+    public String getNombre_usuario() {
+        return nombre_usuario;
+    }
+
+    public void setNombre_usuario(String nombre_usuario) {
+        this.nombre_usuario = nombre_usuario;
+    }
 }

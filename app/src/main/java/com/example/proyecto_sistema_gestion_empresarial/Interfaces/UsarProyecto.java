@@ -11,6 +11,7 @@ import com.example.proyecto_sistema_gestion_empresarial.RespuestaCrearGasto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -37,6 +38,9 @@ public interface UsarProyecto {
 
     @GET("/gastos/{idgasto}")
     Call<Respuesta2> LeerGasto(@Path("idgasto") Integer idgasto);
+
+    @DELETE("/gastos/{idgasto}")
+    Call<Respuesta2> BorrarGasto(@Path("idgasto") Integer idgasto);
 
     @GET("/participaGasto/{idgasto}")
     Call<Respuesta4> LeerParticipaGasto(@Path("idgasto") Integer idgasto);

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class RespuestaUsarPagadorId {
 
-    ArrayList<Usuario> data;
+    Usuario data;
 
-    public RespuestaUsarPagadorId(ArrayList<Usuario> data) {
+    public RespuestaUsarPagadorId(Usuario data) {
         this.data = data;
     }
 
-    public ArrayList<Usuario> getData() {
+    public Usuario getData() {
         return data;
     }
 
-    public void setData(ArrayList<Usuario> data) {
+    public void setData(Usuario data) {
         this.data = data;
     }
 
