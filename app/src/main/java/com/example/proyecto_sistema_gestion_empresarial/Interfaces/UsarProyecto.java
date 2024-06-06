@@ -24,6 +24,9 @@ public interface UsarProyecto {
     @GET("/proyectos/{proyecto_id}")
     Call<RespuestaUsarProyectoId> UsarProyectoId(@Path("proyecto_id") Integer idproyecto);
 
+    @DELETE("/proyectos/{proyecto_id}")
+    Call<RespuestaUsarProyectoId> BorrarProyecto(@Path("proyecto_id") Integer idproyecto);
+
     @GET("/gastosList/{idproyecto}")
     Call<Respuesta2> UsarGasto(@Path("idproyecto") Integer idproyecto);
 

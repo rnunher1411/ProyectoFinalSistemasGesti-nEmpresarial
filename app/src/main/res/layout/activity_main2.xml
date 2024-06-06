@@ -58,8 +58,14 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/boton"
+            android:id="@+id/botonAñadirGasto"
             android:text="Añadir gasto"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonEliminarProyecto"
+            android:text="Eliminar proyecto"/>
 
         <TextView
             android:layout_width="match_parent"

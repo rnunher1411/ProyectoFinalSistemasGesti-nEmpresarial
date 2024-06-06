@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,8 @@ public class MainActivity2 extends AppCompatActivity {
         public ActionBarDrawerToggle actionBarDrawerToggle;
 
         int gastosTotales;
+
+        int listaSize = 0;
 
         @Override
         protected void onCreate(Bundle savedInstanceState){
@@ -76,6 +79,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                         gastosTotales += gAdapter.getItemImporte(x);
                         conteoGasto.setText("Gastos totales: " + gastosTotales);
+                        listaSize++;
 
                     }
                 }
@@ -88,7 +92,7 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-            Button botonGasto = findViewById(R.id.boton);
+            Button botonGasto = findViewById(R.id.botonAñadirGasto);
 
             botonGasto.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,6 +101,52 @@ public class MainActivity2 extends AppCompatActivity {
 
                     final Intent intent = new Intent(MainActivity2.this, MainActivityCrearGasto.class);
                     intent.putExtra("id", idProyecto);
+                    startActivity(intent);
+
+                }
+            });
+
+            Button botonEliminarProyecto = findViewById(R.id.botonEliminarProyecto);
+
+            botonEliminarProyecto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    for (int y = 0; y < listaSize; y++) {
+
+                        Gasto gasto = (Gasto) mListView.getItemAtPosition(y);
+                        int idGasto = gasto.getId();
+
+                        usarGasto.BorrarGasto(idGasto).enqueue(new Callback<Respuesta2>() {
+                            @Override
+                            public void onResponse(Call<Respuesta2> call, Response<Respuesta2> response) {
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<Respuesta2> call, Throwable t) {
+
+                            }
+                        });
+
+                    }
+
+                    usarGasto.BorrarProyecto(idProyecto).enqueue(new Callback<RespuestaUsarProyectoId>() {
+                        @Override
+                        public void onResponse(Call<RespuestaUsarProyectoId> call, Response<RespuestaUsarProyectoId> response) {
+
+                            Toast.makeText(MainActivity2.this, "Proyecto borrado",
+                                    Toast.LENGTH_LONG).show();
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<RespuestaUsarProyectoId> call, Throwable t) {
+
+                        }
+                    });
+
+                    final Intent intent = new Intent(MainActivity2.this, MainActivity.class);
                     startActivity(intent);
 
                 }

@@ -143,6 +143,19 @@ public class MainActivity3 extends AppCompatActivity {
             }
         });
 
+        Button modificarGasto = findViewById(R.id.modificarGasto);
+
+        modificarGasto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Intent intent = new Intent(MainActivity3.this, MainActivityModificarGasto.class);
+                intent.putExtra("id", idProyectoGasto);
+                startActivity(intent);
+
+            }
+        });
+
         Button eliminarGasto = findViewById(R.id.deleteGasto);
 
         eliminarGasto.setOnClickListener(new View.OnClickListener() {
