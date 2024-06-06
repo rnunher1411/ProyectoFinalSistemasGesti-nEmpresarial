@@ -18,6 +18,13 @@ public class GastoUsuarios {
         this.usuarios = usuarios;
     }
 
+    public GastoUsuarios(String concepto, Float importe, int id_proyecto, int id_pagador) {
+        this.concepto = concepto;
+        this.importe = importe;
+        this.id_proyecto = id_proyecto;
+        this.id_pagador = id_pagador;
+    }
+
     public String getConcepto() {
         return concepto;
     }

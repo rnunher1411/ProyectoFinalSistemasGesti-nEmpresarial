@@ -150,7 +150,11 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View v) {
 
                 final Intent intent = new Intent(MainActivity3.this, MainActivityModificarGasto.class);
-                intent.putExtra("id", idProyectoGasto);
+                intent.putExtra("idGasto", idGasto);
+                intent.putExtra("conceptoGasto", conceptoGasto);
+                intent.putExtra("importeGasto", importeGasto);
+                intent.putExtra("idProyectoGasto", idProyectoGasto);
+                intent.putExtra("idPagadorGasto", idPagadorGasto);
                 startActivity(intent);
 
             }

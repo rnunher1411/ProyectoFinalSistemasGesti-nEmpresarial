@@ -5,6 +5,7 @@ import com.example.proyecto_sistema_gestion_empresarial.Respuesta;
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta2;
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta3;
 import com.example.proyecto_sistema_gestion_empresarial.Respuesta4;
+import com.example.proyecto_sistema_gestion_empresarial.RespuestaModificarGasto;
 import com.example.proyecto_sistema_gestion_empresarial.RespuestaUsarPagadorId;
 import com.example.proyecto_sistema_gestion_empresarial.RespuestaUsarProyectoId;
 import com.example.proyecto_sistema_gestion_empresarial.RespuestaCrearGasto;
@@ -14,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface UsarProyecto {
@@ -41,6 +43,9 @@ public interface UsarProyecto {
 
     @GET("/gastos/{idgasto}")
     Call<Respuesta2> LeerGasto(@Path("idgasto") Integer idgasto);
+
+    @PUT("/gastos/{idgasto}")
+    Call<RespuestaModificarGasto> ModificarGasto(@Path("idgasto") Integer idgasto, @Body GastoUsuarios gastoModificado);
 
     @DELETE("/gastos/{idgasto}")
     Call<Respuesta2> BorrarGasto(@Path("idgasto") Integer idgasto);
