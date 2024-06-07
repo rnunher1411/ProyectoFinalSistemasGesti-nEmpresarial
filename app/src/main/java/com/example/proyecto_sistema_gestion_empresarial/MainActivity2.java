@@ -98,7 +98,6 @@ public class MainActivity2 extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-
                     final Intent intent = new Intent(MainActivity2.this, MainActivityCrearGasto.class);
                     intent.putExtra("id", idProyecto);
                     startActivity(intent);
@@ -147,6 +146,19 @@ public class MainActivity2 extends AppCompatActivity {
                     });
 
                     final Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+                    startActivity(intent);
+
+                }
+            });
+
+            Button botonExaminar = findViewById(R.id.botonExaminarProyecto);
+
+            botonExaminar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    final Intent intent = new Intent(MainActivity2.this, MainActivityExaminarProyecto.class);
+                    intent.putExtra("id", idProyecto);
                     startActivity(intent);
 
                 }

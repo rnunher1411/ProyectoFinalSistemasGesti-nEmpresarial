@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivityExaminarProyecto"
+            android:exported="false" />
+        <activity
             android:name=".MainActivityModificarGasto"
             android:exported="false" />
         <activity

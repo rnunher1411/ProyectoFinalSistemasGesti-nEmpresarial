@@ -67,6 +67,12 @@
             android:id="@+id/botonEliminarProyecto"
             android:text="Eliminar proyecto"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonExaminarProyecto"
+            android:text="Examinar proyecto"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
