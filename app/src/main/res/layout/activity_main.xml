@@ -31,6 +31,12 @@
             android:dividerHeight="1dp"
             />
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/botonCrearProyecto"
+            android:text="Crear Proyectos"/>
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
