@@ -94,7 +94,7 @@ public class MainActivityModificarGasto extends AppCompatActivity {
                 PagadorAdapter puAdapter = new PagadorAdapter(MainActivityModificarGasto.this, respuesta3);
                 caja.setAdapter(puAdapter);
 
-                int posicionPagador= 0;
+                int posicionPagador = 0;
 
                 for (int x=0; x < respuesta3.size(); x++) {
 

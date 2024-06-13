@@ -13,6 +13,11 @@ public class Proyecto {
         this.id_admin = id_admin;
     }
 
+    public Proyecto(String nombre, int id_admin) {
+        this.nombre = nombre;
+        this.id_admin = id_admin;
+    }
+
     public Proyecto(String nombre) {
         this.nombre = nombre;
     }
