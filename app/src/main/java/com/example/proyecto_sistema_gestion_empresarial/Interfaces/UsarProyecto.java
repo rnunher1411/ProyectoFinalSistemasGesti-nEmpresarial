@@ -9,6 +9,7 @@ import com.example.proyecto_sistema_gestion_empresarial.RespuestaModificarGasto;
 import com.example.proyecto_sistema_gestion_empresarial.RespuestaUsarPagadorId;
 import com.example.proyecto_sistema_gestion_empresarial.RespuestaUsarProyectoId;
 import com.example.proyecto_sistema_gestion_empresarial.RespuestaCrearGasto;
+import com.example.proyecto_sistema_gestion_empresarial.RespuestaUsuarioProyecto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -25,6 +26,9 @@ public interface UsarProyecto {
 
     @GET("/proyectos/{proyecto_id}")
     Call<RespuestaUsarProyectoId> UsarProyectoId(@Path("proyecto_id") Integer idproyecto);
+
+    @GET("/usuariosproyectos/{proyecto_id}")
+    Call<RespuestaUsuarioProyecto> LeerParticipaUsuario(@Path("proyecto_id") Integer proyecto_id);
 
     @DELETE("/proyectos/{proyecto_id}")
     Call<RespuestaUsarProyectoId> BorrarProyecto(@Path("proyecto_id") Integer idproyecto);

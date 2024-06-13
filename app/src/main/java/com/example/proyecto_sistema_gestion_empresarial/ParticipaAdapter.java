@@ -12,28 +12,12 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class PartcipaGastoUsuarioNombreAdapter extends ArrayAdapter<ParticipaGasto> {
+public class ParticipaAdapter extends ArrayAdapter<ParticipaUsarioProyecto> {
 
-    private List<ParticipaGasto> participaGasto;
-
-    public PartcipaGastoUsuarioNombreAdapter(Context context, List<ParticipaGasto> list) {
+    private List<ParticipaUsarioProyecto> participaUsarioProyecto;
+    public ParticipaAdapter(Context context, List<ParticipaUsarioProyecto> list) {
         super(context, 0, list);
-        this.participaGasto = list;
-    }
-
-
-    public int getUsuarioId(int position) {
-
-        return participaGasto.get(position).getId_usuario();
-
-    }
-
-
-
-    public int getSize() {
-
-        return participaGasto.size();
-
+        this.participaUsarioProyecto = list;
     }
 
     @NonNull
@@ -54,18 +38,19 @@ public class PartcipaGastoUsuarioNombreAdapter extends ArrayAdapter<ParticipaGas
 
     private View initView(int position, View convertView, ViewGroup parent) {
 
-        final View vistaPersonal = LayoutInflater.from(getContext()).inflate(R.layout.usuarios_id, parent, false);
+        final View vistaPersonal = LayoutInflater.from(getContext()).inflate(R.layout.participa_usuario_proyecto, parent, false);
 
         TextView textViewNombreUsuario = vistaPersonal.findViewById(R.id.nombreUsuario);
-        ParticipaGasto currentItem = participaGasto.get(position);
+        ParticipaUsarioProyecto currentItem = participaUsarioProyecto.get(position);
 
         if (currentItem != null) {
 
-            textViewNombreUsuario.setText(String.valueOf(currentItem.getNombre_usuario()));
+            textViewNombreUsuario.setText(currentItem.getNombre_usuario());
 
         }
 
         return vistaPersonal;
 
     }
+
 }
